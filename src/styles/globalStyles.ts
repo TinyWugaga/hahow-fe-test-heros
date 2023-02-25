@@ -1,7 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
-  @import url("https://fonts.googleapis.com/css?family=Nunito:300,400,700");
   html, body, div, span, applet, object, iframe,
   h1, h2, h3, h4, h5, h6, p, blockquote, pre,
   a, abbr, acronym, address, big, cite, code,
@@ -65,6 +64,17 @@ const GlobalStyle = createGlobalStyle`
 
   h1, h2, h3, h4, h5 {
     margin-bottom: 10px;
+  }
+
+  body {
+    font-family: "PingFang TC", 微軟正黑體, sans-serif;
+    font-size: 16px;
+    color: rgba(0, 0, 0, 0.65);
+    background-color: rgb(243, 243, 241);
+    margin: 0px;
+    padding: 0px;
+    min-height: 100vh;
+    min-height: 100dvh;
   }
 `;
 
