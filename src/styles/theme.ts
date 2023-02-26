@@ -1,7 +1,14 @@
 import { DefaultTheme } from "styled-components";
+import { Nunito, Montserrat } from "next/font/google";
+
+const nunito = Nunito({ weight: ["300", "400", "700"], subsets: ["latin"] });
+const montserrat = Montserrat({
+  weight: ["300", "400", "700"],
+  subsets: ["latin"],
+});
 
 const surface = {
-  source: "0, 0, 0",
+  source: "60, 60, 60",
   activeOpacity: "0.54",
   hoverOpacity: "0.04",
   selectedOpacity: "0.08",
@@ -16,8 +23,8 @@ export const theme: DefaultTheme = {
     yellow: "rgba(255, 238, 88, 1)",
     brown: "rgba(224, 190, 153, 1)",
     text: {
-      primary: "rgba(0, 0, 0, 0.87)",
-      secondary: "rgba(0, 0, 0, 0.6)",
+      primary: "rgba(44, 23, 0, 0.87)",
+      secondary: "rgba(44, 23, 0, 0.6)",
       disable: "rgba(0, 0, 0, 0.38)",
     },
     background: {
@@ -34,5 +41,21 @@ export const theme: DefaultTheme = {
   },
   shape: {
     borderRadius: "0.5rem",
+  },
+  typography: {
+    title: {
+      fontFamily: nunito.style.fontFamily,
+      fontWeight: "300",
+      fontSize: "2rem",
+      lineHeight: "1.167",
+      letterSpacing: "-0.01562em",
+    },
+    caption: {
+      fontFamily: montserrat.style.fontFamily,
+      fontWeight: "400",
+      fontSize: "0.75rem",
+      lineHeight: "1.66",
+      letterSpacing: "0.03333em",
+    },
   },
 };

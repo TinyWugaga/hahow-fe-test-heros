@@ -78,11 +78,19 @@ export default function HeroProfile({
 }
 
 const HeroProfileContainer = styled.div`
+  position: relative;
+  margin: 1rem 2rem;
+  padding: 3rem 2rem;
+  height: min(100%, 8rem);
+
   display: flex;
   flex-direction: column;
   gap: 1rem;
 
-  margin: 1rem 4rem;
+  border-radius: ${({ theme }) => theme.shape.borderRadius};
+  border-color: ${({ theme }) => theme.palette.primary};
+  border-width: 2px;
+  border-style: solid;
 `;
 
 const HeroProfileField = styled.div`

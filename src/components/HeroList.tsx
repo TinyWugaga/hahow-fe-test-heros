@@ -6,8 +6,20 @@ export default function HeroList({ children }: PropsWithChildren) {
 }
 
 const HeroListContainer = styled.div`
-  padding: 3rem 0px 4rem;
+  padding: 3rem 2rem 4rem;
 
   display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
   gap: 1rem;
+
+  > * {
+    position: relative;
+    flex: 1;
+    width: min(22%, 12rem);
+
+    @media screen and (max-width: 630px) {
+      width: min(50%, 12rem);
+    }
+  }
 `;

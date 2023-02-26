@@ -9,6 +9,12 @@ declare module "styled-components" {
     | "selected"
     | "disabled"
     | "focus";
+  export type Typography =
+    | "fontFamily"
+    | "fontWeight"
+    | "fontSize"
+    | "lineHeight"
+    | "letterSpacing";
   export interface DefaultTheme {
     palette: {
       primary: string;
@@ -30,6 +36,9 @@ declare module "styled-components" {
     };
     shape: {
       borderRadius: string;
+    };
+    typography: {
+      [key: string]: Record<Typography, string>;
     };
   }
 }

@@ -1,7 +1,4 @@
 import { createGlobalStyle } from "styled-components";
-import { Nunito } from "next/font/google";
-
-const nunito = Nunito({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
 const GlobalStyle = createGlobalStyle`
   html, body, div, span, applet, object, iframe,
@@ -61,25 +58,12 @@ const GlobalStyle = createGlobalStyle`
     border-spacing: 0;
   }
 
-  p, h1, h2, h3, h4, h5 {
-    line-height: 1.4;
-  }
-
-  h1, h2, h3, h4, h5 {
-    margin-bottom: 10px;
-  }
-
   a, a:visited, a:hover, a:active, a:focus, input, select, textarea {
     outline: none;
     text-decoration: none;
   }
 
   /** global styles */
-
-  html {
-    font-family: ${nunito.style.fontFamily};
-  }
-
   body {
     font-family: "PingFang TC", 微軟正黑體, sans-serif;
     font-size: 16px;
