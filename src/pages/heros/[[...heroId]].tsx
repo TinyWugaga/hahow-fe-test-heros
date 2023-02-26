@@ -35,7 +35,7 @@ export default function HeroProfilePage({
     <>
       <HeroList>
         {heros.map((hero) => (
-          <HeroCard key={hero.id} hero={hero} />
+          <HeroCard key={hero.id} hero={hero} isActive={hero.id === heroId} />
         ))}
       </HeroList>
       {heroId && <HeroProfile heroId={heroId} initialProfile={heroProfile} />}
@@ -46,7 +46,7 @@ export default function HeroProfilePage({
 // This gets called on every request
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const { params = {} } = ctx;
-  const heroId = (params.heroId as string) || "";
+  const heroId = params.heroId?.[0] || "";
 
   const heros = await fetchHeros();
   const heroProfile = heroId ? await fetchHeroProfile(heroId) : null;

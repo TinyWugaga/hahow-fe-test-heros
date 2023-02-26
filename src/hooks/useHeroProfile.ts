@@ -7,7 +7,7 @@ const useHeroProfile = ({
   id,
   initialStat,
 }: {
-  id: string | number;
+  id: string;
   initialStat: HeroProfileStat;
 }) => {
   const [heroProfile, setHeroProfile] = useState<HeroProfileStat>(initialStat);
@@ -24,7 +24,7 @@ const useHeroProfile = ({
     return totalStat - currentStat;
   }, [totalStat, heroProfile]);
 
-  const getHeroProfile = useCallback(async (heroId: string | number) => {
+  const getHeroProfile = useCallback(async (heroId: string) => {
     try {
       const newHeroProfile = await fetchHeroProfile(heroId);
       setHeroProfile(newHeroProfile);

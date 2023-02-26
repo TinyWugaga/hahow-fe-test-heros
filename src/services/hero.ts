@@ -14,7 +14,7 @@ export const fetchHeros = async () => {
   }
 };
 
-export const fetchHeroProfile = async (id: string | number) => {
+export const fetchHeroProfile = async (id: string) => {
   try {
     const response = await fetch(
       `https://hahow-recruit.herokuapp.com/heroes/${id}/profile`,
@@ -32,7 +32,7 @@ export const fetchHeroProfile = async (id: string | number) => {
 };
 
 export const updateHeroProfile = async (
-  id: string | number,
+  id: string,
   profile: HeroProfileStat
 ) => {
   try {
