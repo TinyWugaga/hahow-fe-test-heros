@@ -1,18 +1,19 @@
-import "@/styles/globals.css";
 import type { AppProps } from "next/app";
-import { Nunito } from "next/font/google";
+import { ThemeProvider } from "styled-components";
 
-const nunito = Nunito({ weight: ["300", "400", "700"], subsets: ["latin"] });
+import Layout from "@/components/BasicLayout";
+import GlobalStyle from "@/styles/globalStyles";
+import { theme } from "@/styles/theme";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
-      <style jsx global>{`
-        html {
-          font-family: ${nunito.style.fontFamily};
-        }
-      `}</style>
-      <Component {...pageProps} />
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </ThemeProvider>
     </>
   );
 }

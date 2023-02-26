@@ -8,7 +8,7 @@ export default function BasicLayout({ children }: PropsWithChildren) {
       <Head>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
-      <Main>{children}</Main>;
+      <Main>{children}</Main>
     </>
   );
 }
