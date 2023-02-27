@@ -14,12 +14,6 @@ const HeroListContainer = styled.div`
   gap: 1rem;
 
   > * {
-    position: relative;
     flex: 1;
-    width: min(22%, 12rem);
-
-    @media screen and (max-width: 630px) {
-      width: min(50%, 12rem);
-    }
   }
 `;

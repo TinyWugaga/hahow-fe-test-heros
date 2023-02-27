@@ -35,6 +35,11 @@ const HeroCardContainer = styled.div<{ isActive: boolean }>`
   position: relative;
   padding: 1rem 1.2rem;
   height: 100%;
+  width: min(100%, 25rem);
+
+  @media screen and (min-width: 700px) and (max-width: 920px) {
+    flex-wrap: nowrap;
+  }
 
   display: flex;
   place-content: center;
