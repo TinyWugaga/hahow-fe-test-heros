@@ -6,7 +6,7 @@ export default function HeroList({ children }: PropsWithChildren) {
 }
 
 const HeroListContainer = styled.div`
-  padding: 3rem 2rem 4rem;
+  padding: 3rem 2rem 2rem;
 
   display: flex;
   flex-wrap: wrap;

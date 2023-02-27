@@ -3,7 +3,7 @@ import Image from "next/image";
 import styled from "styled-components";
 
 import { Hero } from "@/types";
-import { SurfaceCss } from "@/styles/commonStyles";
+import { SurfaceMixin, PaperMixin } from "@/styles/commonStyles";
 
 export default function HeroCard({
   hero,
@@ -25,7 +25,7 @@ export default function HeroCard({
             priority
           />
         </HeroCardAvatar>
-        <HeroCardImageTitle>{hero.name}</HeroCardImageTitle>
+        <HeroCardTitle>{hero.name}</HeroCardTitle>
       </HeroCardContainer>
     </Link>
   );
@@ -33,11 +33,12 @@ export default function HeroCard({
 
 const HeroCardContainer = styled.div<{ isActive: boolean }>`
   position: relative;
-  padding: 0.6rem 1.2rem;
+  padding: 1rem 1.2rem;
   height: 100%;
 
   display: flex;
   place-content: center;
+  align-items: center;
   flex-wrap: wrap;
   gap: 0.8rem;
 
@@ -46,15 +47,15 @@ const HeroCardContainer = styled.div<{ isActive: boolean }>`
   border-width: 2px;
   border-style: solid;
 
-  background-color: ${({ isActive, theme }) =>
-    isActive
-      ? `${theme.palette.primary}; filter: brightness(110%)`
-      : "transparent"};
+  ${({ isActive, theme }) =>
+    PaperMixin("", {
+      borderRadius: "unset",
+      backgroundColor: isActive
+        ? `${theme.palette.primary}; filter: brightness(110%)`
+        : "",
+    })}
 
-  &::after {
-    content: "";
-    ${SurfaceCss}
-  }
+  ${SurfaceMixin()}
 
   @media (hover: hover) {
     &:hover {
@@ -65,10 +66,10 @@ const HeroCardContainer = styled.div<{ isActive: boolean }>`
   }
 `;
 
-const HeroCardImageTitle = styled.h1`
+const HeroCardTitle = styled.h1`
   position: relative;
-  margin: calc(5cqh - 1rem) 0;
-  width: clamp(6rem, 50cqw, 10rem);
+  margin: auto 0;
+  width: clamp(6rem, 45cqw, 10rem);
 
   font-family: ${({ theme }) => theme.typography.title.fontFamily};
   font-size: clamp(
@@ -85,8 +86,8 @@ const HeroCardAvatar = styled.div`
   position: relative;
   inset: 0;
   margin: auto;
-  width: clamp(2rem, 50cqw, 4rem);
-  height: clamp(2rem, 50cqw, 4rem);
+  width: clamp(2.5rem, 42cqw, 5rem);
+  height: clamp(2.5rem, 42cqw, 5rem);
 
   border-radius: 50%;
   border-color: ${({ theme }) => theme.palette.primary};
@@ -98,7 +99,7 @@ const HeroCardAvatar = styled.div`
   img {
     object-fit: cover;
     width: 100%;
-    height: auto;
+    height: 100%;
 
     border-radius: inherit;
   }

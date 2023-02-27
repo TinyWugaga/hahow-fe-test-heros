@@ -45,10 +45,24 @@ export const theme: DefaultTheme = {
   typography: {
     title: {
       fontFamily: nunito.style.fontFamily,
-      fontWeight: "300",
-      fontSize: "2rem",
-      lineHeight: "1.167",
-      letterSpacing: "-0.01562em",
+      fontWeight: "400",
+      fontSize: "2.215rem",
+      lineHeight: "1.235",
+      letterSpacing: "0.00735em",
+    },
+    subtitle: {
+      fontFamily: nunito.style.fontFamily,
+      fontWeight: "400",
+      fontSize: "1.5rem",
+      lineHeight: "1.334",
+      letterSpacing: "0em",
+    },
+    body: {
+      fontFamily: montserrat.style.fontFamily,
+      fontWeight: "400",
+      fontSize: "1rem",
+      lineHeight: "1.5",
+      letterSpacing: "0.00938em",
     },
     caption: {
       fontFamily: montserrat.style.fontFamily,
