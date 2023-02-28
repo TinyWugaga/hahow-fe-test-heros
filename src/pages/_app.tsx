@@ -5,12 +5,19 @@ import Layout from "@/components/BasicLayout";
 import GlobalStyle from "@/styles/globalStyles";
 import { theme } from "@/styles/theme";
 
-export default function App({ Component, pageProps }: AppProps) {
+export default function App({
+  Component,
+  pageProps,
+}: AppProps & {
+  Component: {
+    pageTitle: string;
+  };
+}) {
   return (
     <>
+      <GlobalStyle />
       <ThemeProvider theme={theme}>
-        <GlobalStyle />
-        <Layout>
+        <Layout pageTitle={Component.pageTitle || ""}>
           <Component {...pageProps} />
         </Layout>
       </ThemeProvider>

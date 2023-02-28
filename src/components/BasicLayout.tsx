@@ -2,10 +2,17 @@ import { PropsWithChildren } from "react";
 import Head from "next/head";
 import styled from "styled-components";
 
-export default function BasicLayout({ children }: PropsWithChildren) {
+export default function BasicLayout({
+  pageTitle,
+  children,
+}: PropsWithChildren & {
+  pageTitle: string;
+}) {
+  const title = `Hahow Heros! ${pageTitle ? ` | ${pageTitle}` : ""}`;
   return (
     <>
       <Head>
+        <title>{title}</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <Main>{children}</Main>
@@ -14,6 +21,5 @@ export default function BasicLayout({ children }: PropsWithChildren) {
 }
 
 const Main = styled.main`
-  min-height: 100dvh;
-  min-height: 100vh;
+  height: 100%;
 `;

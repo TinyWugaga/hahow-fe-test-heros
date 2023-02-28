@@ -12,6 +12,15 @@ const nextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: "/",
+        destination: "/heros",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;
