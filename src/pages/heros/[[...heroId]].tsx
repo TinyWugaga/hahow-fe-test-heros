@@ -1,5 +1,4 @@
 import { GetServerSideProps } from "next";
-import dynamic from "next/dynamic";
 import { useState, useEffect } from "react";
 
 import { Hero, HeroProfileStat } from "@/types";
