@@ -39,8 +39,12 @@ const HeroCardContainer = styled.div`
   height: 100%;
   width: calc(25cqw - 1rem);
 
-  @media screen and (max-width: 700px) {
-    width: calc(50cqw - 1rem);
+  @media screen and (max-width: 768px) {
+    width: calc(50cqw - 0.5rem);
+  }
+
+  @media screen and (max-width: 480px) {
+    width: 100%;
   }
 
   border-radius: ${({ theme }) => theme.shape.borderRadius};
