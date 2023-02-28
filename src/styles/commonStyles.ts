@@ -14,6 +14,8 @@ export const SurfaceMixin = (
     backgroundColor?: string;
   } = {}
 ) => css`
+  position: relative;
+  overflow: hidden;
   &::after {
     content: "";
     ${SurfaceCss}
@@ -39,6 +41,8 @@ export const PaperMixin = (
     backgroundColor?: string;
   } = {}
 ) => css`
+  position: relative;
+  overflow: hidden;
   &::before {
     content: "";
     ${PaperCss}

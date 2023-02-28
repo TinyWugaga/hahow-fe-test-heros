@@ -35,8 +35,8 @@ export const theme: DefaultTheme = {
       active: `rgba(${surface.source}, ${surface.activeOpacity})`,
       hover: `rgba(${surface.source}, ${surface.hoverOpacity})`,
       selected: `rgba(${surface.source}, ${surface.selectedOpacity})`,
-      disabled: `rgba(${surface.source}, ${surface.disabledOpacity}`,
-      focus: `rgba(${surface.source}, ${surface.focusOpacity}`,
+      disabled: `rgba(${surface.source}, ${surface.disabledOpacity})`,
+      focus: `rgba(${surface.source}, ${surface.focusOpacity})`,
     },
   },
   shape: {
