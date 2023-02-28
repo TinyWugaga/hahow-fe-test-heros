@@ -65,6 +65,8 @@ const HeroCardContainer = styled.div<{ isActive: boolean }>`
   &:active {
     box-shadow: unset;
   }
+
+  transition: border-color 0.2s 0.1s linear;
 `;
 
 const HeroCardWrapperActiveStyle = css`
@@ -83,7 +85,7 @@ const HeroCardWrapper = styled.div<{ isActive: boolean }>`
   flex-wrap: wrap;
   gap: 0.8rem;
 
-  ${PaperMixin("", {
+  ${PaperMixin("transition: all 0.5s 0.2s ease-in;", {
     borderRadius: "unset",
   })}
 
@@ -114,6 +116,8 @@ const HeroCardTitle = styled.h1`
   color: var(--text-color);
   line-height: ${({ theme }) => theme.typography.title.lineHeight};
   text-align: center;
+
+  transition: color 0.2s 0.1s linear;
 `;
 
 const HeroCardAvatar = styled.div`
@@ -137,4 +141,6 @@ const HeroCardAvatar = styled.div`
 
     border-radius: inherit;
   }
+
+  transition: border-color 0.2s 0.1s linear;
 `;
