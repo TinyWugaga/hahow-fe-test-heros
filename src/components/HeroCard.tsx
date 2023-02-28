@@ -13,7 +13,7 @@ export default function HeroCard({
   isActive: boolean;
 }) {
   return (
-    <HeroCardContainer>
+    <HeroCardContainer isActive={isActive}>
       <Link href={`/heros/${hero.id}`}>
         <HeroCardWrapper isActive={isActive}>
           <HeroCardAvatar>
@@ -33,9 +33,13 @@ export default function HeroCard({
   );
 }
 
-const HeroCardContainer = styled.div`
+const HeroCardContainer = styled.div<{ isActive: boolean }>`
+  --border-color: ${({ isActive, theme }) =>
+    isActive ? "rgb(255, 255, 255)" : theme.palette.text.primary};
+  --text-color: ${({ isActive, theme }) =>
+    isActive ? "rgb(255, 255, 255)" : theme.palette.text.primary};
+
   position: relative;
-  padding: 1rem 1.2rem;
   height: 100%;
   width: calc(25cqw - 1rem);
 
@@ -48,14 +52,24 @@ const HeroCardContainer = styled.div`
   }
 
   border-radius: ${({ theme }) => theme.shape.borderRadius};
-  border-color: ${({ theme }) => theme.palette.primary};
+  border-color: var(--border-color);
   border-width: 3px;
   border-style: solid;
+  overflow: hidden;
 
   container-type: inline-size;
+
+  box-shadow: rgb(0 0 0 / 20%) 0px 3px 1px -2px,
+    rgb(0 0 0 / 14%) 0px 2px 2px 0px, rgb(0 0 0 / 12%) 0px 1px 5px 0px;
+
+  &:active {
+    box-shadow: unset;
+  }
 `;
 
 const HeroCardWrapper = styled.div<{ isActive: boolean }>`
+  padding: 1rem 1.2rem;
+
   display: flex;
   place-content: center;
   align-items: center;
@@ -65,7 +79,9 @@ const HeroCardWrapper = styled.div<{ isActive: boolean }>`
   ${({ isActive, theme }) =>
     PaperMixin("", {
       borderRadius: "unset",
-      backgroundColor: isActive ? `${theme.palette.primary}` : "",
+      backgroundColor: isActive
+        ? `${theme.palette.primary}; filter: brightness(80%)`
+        : "",
     })}
 
   ${SurfaceMixin()}
@@ -73,8 +89,8 @@ const HeroCardWrapper = styled.div<{ isActive: boolean }>`
   @media (hover: hover) {
     &:hover {
       &::after {
-        ${({ theme }) =>
-          `background-color: ${theme.palette.action.hover}; filter: brightness(90%);`};
+        background-color: ${({ theme }) => theme.palette.action.hover};
+        filter: brightness(80%);
       }
     }
   }
@@ -91,7 +107,7 @@ const HeroCardTitle = styled.h1`
     18cqw,
     ${({ theme }) => theme.typography.title.fontSize}
   );
-  color: ${({ theme }) => theme.palette.text.primary};
+  color: var(--text-color);
   line-height: ${({ theme }) => theme.typography.title.lineHeight};
   text-align: center;
 `;
@@ -104,7 +120,7 @@ const HeroCardAvatar = styled.div`
   height: clamp(2.5rem, 42cqw, 5rem);
 
   border-radius: 50%;
-  border-color: ${({ theme }) => theme.palette.primary};
+  border-color: var(--border-color);
   border-width: 3px;
   border-style: solid;
 

@@ -1,18 +1,15 @@
+import { useMemo } from "react";
 import styled, { keyframes } from "styled-components";
 
 import { HeroProfileStat, HeroProfileStatKeys } from "@/types";
 import { PaperMixin } from "@/styles/commonStyles";
-import { PixelArrowUp, PixelLoader } from "@/components/Icons";
+import { PixelLoader } from "@/components/Icons";
+import { HeroCharacter } from "@/components/HeroCharacter";
 import HeroStatField from "@/components/HeroStatField";
+import HeroStatSaveButton from "@/components/HeroStatSaveButton";
 
 import useHeroProfile from "@/hooks/useHeroProfile";
-
-const DEFAULT_STAT = {
-  str: 0,
-  int: 0,
-  agi: 0,
-  luk: 0,
-};
+import { DEFAULT_STAT, HERO_CHARACTER } from "@/hooks/constants";
 
 export default function HeroProfile({
   heroId,
@@ -32,6 +29,8 @@ export default function HeroProfile({
     id: heroId,
     initialStat: initialProfile,
   });
+
+  const Character = useMemo(() => HERO_CHARACTER[heroId], [heroId]);
 
   return (
     <HeroProfileContainer>
@@ -57,15 +56,18 @@ export default function HeroProfile({
         )}
       </HeroStatList>
 
-      <HeroProfileAction>
-        <p>Available Value Points : {isLoading ? 0 : restStatValue}</p>
-        <HeroProfileSaveButton
+      <HeroProfileToolbar>
+        <HeroProfileText>
+          剩餘能力值 : {isLoading ? 0 : restStatValue}
+        </HeroProfileText>
+        <HeroCharacter>
+          <Character viewBox="96 96 320 320" />
+        </HeroCharacter>
+        <HeroStatSaveButton
           onClick={() => onUpdateHeroStat(heroProfile)}
-          disabled={isLoading || restStatValue > 0}
-        >
-          <PixelArrowUp />
-        </HeroProfileSaveButton>
-      </HeroProfileAction>
+          isDisabled={isLoading || restStatValue > 0}
+        />
+      </HeroProfileToolbar>
     </HeroProfileContainer>
   );
 }
@@ -78,7 +80,17 @@ const HeroProfileContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  gap: 2rem;
+  align-items: center;
+  gap: 1.8rem;
+
+  container-type: inline-size;
+
+  @media screen and (max-width: 500px) {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+  }
 
   border-radius: ${({ theme }) => theme.shape.borderRadius};
 
@@ -92,40 +104,29 @@ const HeroProfileContainer = styled.div`
     PaperMixin("filter: brightness(110%) saturate(90%);", {
       backgroundColor: theme.palette.secondary,
     })}
-
-  > * {
-    flex: 1;
-  }
 `;
-
 const HeroStatList = styled.div`
+  flex: 1;
+
   position: relative;
+  width: 100%;
   height: max(30cqh, 20rem);
 
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: center;
   gap: 1.2rem;
 `;
 
-const HeroProfileAction = styled.div`
+const HeroProfileToolbar = styled.div`
+  flex: 1;
+
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
   justify-content: flex-end;
-  align-items: flex-end;
+  align-items: center;
   gap: 0.6rem;
-`;
-
-const HeroProfileSaveButton = styled.button`
-  width: 2.2rem;
-  height: 2.2rem;
-
-  border-radius: 50%;
-
-  svg {
-    width: 100%;
-    height: 100%;
-  }
 `;
 
 const loadingKeyframe = keyframes`
@@ -156,4 +157,11 @@ const LoadingSpinner = styled(PixelLoader)`
   filter: opacity(80%);
 
   animation: ${loadingKeyframe} 6s infinite linear;
+`;
+
+const HeroProfileText = styled.p`
+  font-family: ${({ theme }) => theme.typography.body.fontFamily};
+  font-size: ${({ theme }) => theme.typography.body.fontSize};
+  font-weight: ${({ theme }) => theme.typography.body.fontWeight};
+  line-height: ${({ theme }) => theme.typography.body.lineHeight};
 `;
