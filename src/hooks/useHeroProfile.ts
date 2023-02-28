@@ -33,7 +33,6 @@ const useHeroProfile = ({
       setIsLoading(false);
       setHeroProfile(newHeroProfile);
     } catch (error) {
-      console.error(error);
       setIsLoading(false);
     }
   }, []);
@@ -47,7 +46,6 @@ const useHeroProfile = ({
       );
 
       const everyValueValid = Object.values(stat).every((value) => value > 0);
-      console.log({ totalCostValue, restStatValue, everyValueValid });
       return totalCostValue <= restStatValue && everyValueValid;
     },
     [heroProfile, restStatValue]
@@ -74,7 +72,6 @@ const useHeroProfile = ({
           result && setIsUploading(false);
         }
       } catch (error) {
-        console.error({ updateHeroStatError: error });
         setIsUploading(false);
       }
     },

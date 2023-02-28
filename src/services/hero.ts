@@ -11,6 +11,7 @@ export const fetchHeros = async () => {
     return await response.json();
   } catch (error) {
     console.error({ fetchHerosError: error });
+    throw error;
   }
 };
 
@@ -28,6 +29,7 @@ export const fetchHeroProfile = async (id: string) => {
     return await response.json();
   } catch (error) {
     console.error({ fetchHerosError: error });
+    throw error;
   }
 };
 
@@ -49,5 +51,6 @@ export const updateHeroProfile = async (
     return await response.text();
   } catch (error) {
     console.error({ updateHeroProfileError: error });
+    throw error;
   }
 };
