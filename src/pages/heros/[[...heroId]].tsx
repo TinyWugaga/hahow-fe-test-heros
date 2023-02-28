@@ -1,4 +1,5 @@
 import { GetServerSideProps } from "next";
+import dynamic from "next/dynamic";
 import { useState, useEffect } from "react";
 
 import { Hero, HeroProfileStat } from "@/types";
@@ -42,6 +43,8 @@ export default function HeroProfilePage({
     </>
   );
 }
+
+HeroProfilePage.pageTitle = "Heros Profile";
 
 // This gets called on every request
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
