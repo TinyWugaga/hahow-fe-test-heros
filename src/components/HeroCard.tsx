@@ -13,51 +13,55 @@ export default function HeroCard({
   isActive: boolean;
 }) {
   return (
-    <Link href={`/heros/${hero.id}`}>
-      <HeroCardContainer isActive={isActive}>
-        <HeroCardAvatar>
-          <Image
-            alt={`hero_${hero.id}`}
-            src={hero.image}
-            quality={100}
-            width={700}
-            height={475}
-            priority
-          />
-        </HeroCardAvatar>
-        <HeroCardTitle>{hero.name}</HeroCardTitle>
-      </HeroCardContainer>
-    </Link>
+    <HeroCardContainer>
+      <Link href={`/heros/${hero.id}`}>
+        <HeroCardWrapper isActive={isActive}>
+          <HeroCardAvatar>
+            <Image
+              alt={`hero_${hero.id}`}
+              src={hero.image}
+              quality={100}
+              width={700}
+              height={475}
+              priority
+            />
+          </HeroCardAvatar>
+          <HeroCardTitle>{hero.name}</HeroCardTitle>
+        </HeroCardWrapper>
+      </Link>
+    </HeroCardContainer>
   );
 }
 
-const HeroCardContainer = styled.div<{ isActive: boolean }>`
+const HeroCardContainer = styled.div`
   position: relative;
   padding: 1rem 1.2rem;
   height: 100%;
-  width: min(100%, 25rem);
+  width: calc(25cqw - 1rem);
 
-  @media screen and (min-width: 700px) and (max-width: 920px) {
-    flex-wrap: nowrap;
+  @media screen and (max-width: 700px) {
+    width: calc(50cqw - 1rem);
   }
 
+  border-radius: ${({ theme }) => theme.shape.borderRadius};
+  border-color: ${({ theme }) => theme.palette.primary};
+  border-width: 3px;
+  border-style: solid;
+
+  container-type: inline-size;
+`;
+
+const HeroCardWrapper = styled.div<{ isActive: boolean }>`
   display: flex;
   place-content: center;
   align-items: center;
   flex-wrap: wrap;
   gap: 0.8rem;
 
-  border-radius: ${({ theme }) => theme.shape.borderRadius};
-  border-color: ${({ theme }) => theme.palette.primary};
-  border-width: 2px;
-  border-style: solid;
-
   ${({ isActive, theme }) =>
     PaperMixin("", {
       borderRadius: "unset",
-      backgroundColor: isActive
-        ? `${theme.palette.primary}; filter: brightness(110%)`
-        : "",
+      backgroundColor: isActive ? `${theme.palette.primary}` : "",
     })}
 
   ${SurfaceMixin()}
@@ -65,7 +69,8 @@ const HeroCardContainer = styled.div<{ isActive: boolean }>`
   @media (hover: hover) {
     &:hover {
       &::after {
-        ${({ theme }) => `background-color: ${theme.palette.action.hover};`};
+        ${({ theme }) =>
+          `background-color: ${theme.palette.action.hover}; filter: brightness(90%);`};
       }
     }
   }
@@ -74,12 +79,12 @@ const HeroCardContainer = styled.div<{ isActive: boolean }>`
 const HeroCardTitle = styled.h1`
   position: relative;
   margin: auto 0;
-  width: clamp(6rem, 45cqw, 10rem);
+  width: 100%;
 
   font-family: ${({ theme }) => theme.typography.title.fontFamily};
   font-size: clamp(
     1rem,
-    calc(0.1 * 100cqw),
+    18cqw,
     ${({ theme }) => theme.typography.title.fontSize}
   );
   color: ${({ theme }) => theme.palette.text.primary};
@@ -96,7 +101,7 @@ const HeroCardAvatar = styled.div`
 
   border-radius: 50%;
   border-color: ${({ theme }) => theme.palette.primary};
-  border-width: 2px;
+  border-width: 3px;
   border-style: solid;
 
   overflow: hidden;

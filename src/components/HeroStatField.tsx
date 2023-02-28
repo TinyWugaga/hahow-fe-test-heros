@@ -75,7 +75,9 @@ const HeroStatLabel = styled.label`
 `;
 
 const HeroStatToolbar = styled.div`
+  position: relative;
   width: 100%;
+  height: 100%;
 
   display: flex;
   align-items: center;
@@ -85,7 +87,7 @@ const HeroStatToolbar = styled.div`
 const HeroStatValueBar = styled.div<{ statValuePercentage: number }>`
   position: relative;
   width: max(100%, 12rem);
-  height: 60%;
+  height: 0.8rem;
   border-radius: ${({ theme }) => theme.shape.borderRadius};
 
   background-color: ${({ theme }) => theme.palette.background.surface};

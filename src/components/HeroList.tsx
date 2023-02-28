@@ -1,9 +1,4 @@
-import { PropsWithChildren } from "react";
 import styled from "styled-components";
-
-export default function HeroList({ children }: PropsWithChildren) {
-  return <HeroListContainer>{children}</HeroListContainer>;
-}
 
 const HeroListContainer = styled.div`
   padding: 3rem 2rem 2rem;
@@ -13,7 +8,7 @@ const HeroListContainer = styled.div`
   justify-content: space-between;
   gap: 1rem;
 
-  > * {
-    flex: 1;
-  }
+  container-type: inline-size;
 `;
+
+export default HeroListContainer;
