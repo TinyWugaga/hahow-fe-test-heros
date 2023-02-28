@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 import { Hero } from "@/types";
 import { SurfaceMixin, PaperMixin } from "@/styles/commonStyles";
@@ -67,6 +67,13 @@ const HeroCardContainer = styled.div<{ isActive: boolean }>`
   }
 `;
 
+const HeroCardWrapperActiveStyle = css`
+  &::before {
+    background-color: ${({ theme }) => theme.palette.primary};
+    filter: brightness(105%);
+  }
+`;
+
 const HeroCardWrapper = styled.div<{ isActive: boolean }>`
   padding: 1rem 1.2rem;
 
@@ -76,13 +83,9 @@ const HeroCardWrapper = styled.div<{ isActive: boolean }>`
   flex-wrap: wrap;
   gap: 0.8rem;
 
-  ${({ isActive, theme }) =>
-    PaperMixin("", {
-      borderRadius: "unset",
-      backgroundColor: isActive
-        ? `${theme.palette.primary}; filter: brightness(80%)`
-        : "",
-    })}
+  ${PaperMixin("", {
+    borderRadius: "unset",
+  })}
 
   ${SurfaceMixin()}
 
@@ -90,10 +93,11 @@ const HeroCardWrapper = styled.div<{ isActive: boolean }>`
     &:hover {
       &::after {
         background-color: ${({ theme }) => theme.palette.action.hover};
-        filter: brightness(80%);
       }
     }
   }
+
+  ${({ isActive }) => isActive && HeroCardWrapperActiveStyle}
 `;
 
 const HeroCardTitle = styled.h1`

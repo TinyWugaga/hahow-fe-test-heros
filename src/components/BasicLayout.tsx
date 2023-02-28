@@ -21,5 +21,13 @@ export default function BasicLayout({
 }
 
 const Main = styled.main`
-  height: 100%;
+  position: relative;
+  margin: auto;
+  padding: 0 calc((100% - 80rem) / 2);
+  width: min(100%, 80rem);
+  min-height: 100dvh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 `;
