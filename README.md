@@ -75,7 +75,7 @@ ____________
 
 <br>
 
-## Packages
+## Libraries
 
 ### Next.js
 
